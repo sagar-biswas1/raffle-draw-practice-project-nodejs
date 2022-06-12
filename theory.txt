@@ -1,0 +1,22 @@
+1. in the model we maintain model
+2. from controller we maintain business logic
+3. from service we communicate to db
+-----------------------------------------------
+basic folders we need for monolethic app...
+-> app
+-> config
+-> controller
+-> models
+-> db 
+-> services
+-> error
+-> middlewire
+-> logs
+
+
+---------------------------------------------
+
+ekta health route thaka lagbe must be....
+
+
+---> we we use env, will will use a default env file with dummy data , so that others can assume what env they need
