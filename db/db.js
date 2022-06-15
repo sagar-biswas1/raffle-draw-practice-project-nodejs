@@ -59,7 +59,7 @@ class MyDB {
  * @returns {Array<Ticket>} 
  */
 	findByUserName(userName) {
-		console.log("username->",userName)
+		
 		const tickets = this.tickets.filter(
 			/**
              * 
@@ -69,6 +69,31 @@ class MyDB {
 			(ticket) => ticket.userName == userName
 		);
 		return tickets;
+	}
+
+	/**
+	 * 
+	 * @param {string} userName 
+	 * @param {{userName:string,price:number}} ticketBody 
+	 * @returns {Array <Ticket>} tickets
+	 */
+	updateByUserName(userName,ticketBody) {
+		const tickets = this.tickets.filter(
+			/**
+             * 
+             * @param {Ticket} ticket 
+             *
+             */
+			(ticket) => ticket.userName == userName
+		);
+		const updatedTickets=tickets.map(ticket =>{
+			ticket.userName = ticketBody.userName || ticket.userName;
+		ticket.price = ticketBody.price || ticket.price;
+		ticket.updatedAt = new Date();
+		return ticket;
+		})
+
+		return updatedTickets
 	}
 	/**
      * 

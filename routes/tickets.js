@@ -29,7 +29,16 @@ router.route("/u/:userName")
         const tickets = db.findByUserName(userName)
         res.status(200).json(tickets)
      })
-    .patch(() => { })
+    .patch((req,res) => {
+        const userName = req.params.userName
+        console.log(userName)
+        const tickets = db.updateByUserName(userName,req.body)
+        if(tickets.length){
+            res.status(200).json({ message:"updated successfully",tickets})
+        }else{
+            res.status(200).json({ message:"no tickets found with this username"})
+        }
+     })
     .delete(() => { })
 
 router.post('/sell', (req, res) => {
