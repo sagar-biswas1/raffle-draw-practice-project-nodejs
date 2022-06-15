@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require('express');
 const app = express();
 const {errorHandler,notfoundHandler}=require('./error')
+const myDB= require('../db/db')
 
 app.use(require('./middlewire'));
-
 
 
 app.use(require('./routes'))

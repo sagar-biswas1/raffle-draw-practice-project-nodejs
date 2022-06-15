@@ -59,13 +59,14 @@ class MyDB {
  * @returns {Array<Ticket>} 
  */
 	findByUserName(userName) {
+		console.log("username->",userName)
 		const tickets = this.tickets.filter(
 			/**
              * 
              * @param {Ticket} ticket 
              *
              */
-			(ticket) => ticket.id == userName
+			(ticket) => ticket.userName == userName
 		);
 		return tickets;
 	}
@@ -103,14 +104,23 @@ class MyDB {
      * @returns {Array<Ticket>} winners
      */
 	draw(winnerCount) {
-		let indexes = new Array(winnerCount);
-		for (let i = 0; i < indexes.length; i++) {
+		let indexes = [];
+		for (let i = 0; i < winnerCount; i++) {
+			
 			let index = Math.floor(Math.random() * this.tickets.length);
-            while(indexes.includes(index)){
-                index = Math.floor(Math.random() * this.tickets.length);
-            }
-            indexes.push(index)
+		
+            if(indexes.includes(index)){
+				while(indexes.includes(index)){
+					index = Math.floor(Math.random() * this.tickets.length);
+					
+				}
+				indexes.push(index)
+				
+			}else{
+				indexes.push(index)
+			}
 		}
+		console.log("inside draw",indexes)
         const winners= indexes.map(i=>this.tickets[i])
         return winners
 	}
